@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--Bluetooth code is copied from: https://googlechrome.github.io/samples/web-bluetooth/device-info-async-await.html-->
 <html>
 <head>
   <link rel="stylesheet" href="style.css">
@@ -14,6 +15,16 @@
   </div>
   <div class="centerbuttondiv">
     <div class="enormodiv">
+        <form>
+        <button>Pair Bluetooth Device</button>
+      </form>
+
+      Pairing Status
+      <div id="output" class="output">
+        <div id="content"></div>
+        <div id="status"></div>
+        <pre id="log"></pre>
+      </div>
     </div>
     <a class="thinb" href="index.html">
       Home
@@ -23,7 +34,7 @@
   <p class="ftrp">By: Tia Basak, Bu Sun Kim, Robert Perez</p>
 </footer>
 </body>
-<script type="text/javascript">
 
-</script>
+<script src="device-info.js"></script>
+
 </html>
