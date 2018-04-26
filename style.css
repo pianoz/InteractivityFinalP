@@ -116,6 +116,21 @@ a.thinb:link, a.thinb:visited {
   font-weight: bold;
   font-size: 2em;
 }
+.pairingdiv{
+  background-color:#ff6c56;
+  color: #383636;
+  width: 60%;
+  height: 10%;
+  padding: 5%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 1em;
+  vertical-align: middle;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  font-size: 2em;
+}
 .livedatareadout{
   background-color:#ff6c56;
   color: #383636;
