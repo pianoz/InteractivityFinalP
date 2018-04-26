@@ -26,13 +26,30 @@
         <pre id="log"></pre>
       </div>
     </div>
+    <div class="livedatareadout">
+      <div class="datafeed">
+        <p id="datafeed"></p>
+      </div>
+    </div>
     <a class="thinb" href="index.html">
       Home
     </a>
   </div>
-<footer>
-  <p class="ftrp">By: Tia Basak, Bu Sun Kim, Robert Perez</p>
-</footer>
+
+<script>
+  var counter = 0;
+  var elem = document.getElementById("datafeed");
+  var inst = setInterval(change, 1000);
+
+  function change() {
+    elem.innerHTML = counter;
+    counter++;
+    if (counter >= 1000) {
+      counter = 0;
+  // clearInterval(inst); // uncomment this if you want to stop refreshing after one cycle
+    }
+  }
+</script>
 </body>
 
 <script src="device-info.js"></script>
