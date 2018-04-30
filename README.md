@@ -30,11 +30,11 @@ This is because all information is gathered via USB.
 1. Download the Arduino IDE https://www.arduino.cc/en/Main/Software 
 2. Open `forcesensor_ThreeSensors/forcesensor_ThreeSensors.ino` in the Arduino IDE.
 3. Connect the Arduino via USB. Upload and run the code on the Arduino (please see documentation at arduino.cc for more help).
-4. Open the Serial Monitor. If you press on the pressure sensors, you should see three comma separated numbers appear on each line.
+4. Open the Serial Monitor. If you apply force to any of the pressure sensors, you should see three comma separated numbers appear on each line.
 ![](Images/Arduino.PNG)
 5. Once you've confirmed that the numbers appear when force is applied, close the serial monitor. 
 
-**Warning: Leaving it open will cause error messages that look like `<port> not available` when Node attempts to access the same port.**
+**Warning: Leaving it open will cause error messages that look like `Error Opening COM3: File not found` when Node attempts to access the same port.**
 
 ## Node.js
 1. Install node.js: https://nodejs.org/
@@ -47,6 +47,12 @@ This is because all information is gathered via USB.
     }
     ```
 5. Run the backend server. `node arduino.js`
+6. On the console you should see:
+    ```
+    C:\Users\Bu Sun\Documents\GitHub\InteractivityFinalP>node arduino.js
+    listening on *:3000
+    ```
+If you see `Error Opening <port>: File not found` then you have selected the wrong port. 
 6. Go to `localhost:3000/index.html` in a browser. 
 7. Go to  `Exercises > Writing`
 8. The UI will initially look like this:
