@@ -88,6 +88,12 @@ a.thinb:link, a.thinb:visited {
   margin-top: 2%;
   margin-left: -12%;
 }
+.dlist{
+  font-size: .7em;
+  font-weight: lighter;
+  padding-bottom: 10%;
+
+}
 .datafeed{
   position: relative;
   left:5%;
