@@ -30,7 +30,8 @@ This is because all information is gathered via USB.
 4. Open the Serial Monitor. If you press on the pressure sensors, you should see three comma separated numbers appear on each line.
 ![](Images/Arduino.PNG)
 5. Once you've confirmed that the numbers appear when force is applied, close the serial monitor. 
-Leaving it open will cause issues when Node attempts to access the same port.
+
+**Warning: Leaving it open will cause error messages that look like `<port> not available` when Node attempts to access the same port.**
 
 ## Node.js
 1. Install node.js: https://nodejs.org/
