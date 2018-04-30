@@ -51,8 +51,11 @@ This is because all information is gathered via USB.
     listening on *:3000
     ```
 If you see `Error Opening <port>: File not found` then you have selected the wrong port. 
+
 6. Go to `localhost:3000/index.html` in a browser. 
+
 7. Go to  `Exercises > Writing`
+
 8. The UI will initially look like this:
  ![](Images/UI.PNG)
  One pressure is applied to a sensor, that value should update in close to real time.
