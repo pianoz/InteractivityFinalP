@@ -1,6 +1,7 @@
 # InteractivityFinalP
 
 ![](Images/GetGripGlove-1.jpg | width=100)
+
 ![](Images/GetGripGlove-2.jpg | width=100)
 
 ## Hardware Setup
