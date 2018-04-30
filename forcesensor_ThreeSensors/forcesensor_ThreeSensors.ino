@@ -72,12 +72,7 @@ void loop()
       force2 =  fsrG2 / 0.000000642857;
       force3 =  fsrG3 / 0.000000642857;}
       
-    Serial.println("Force1: " + String(force1) + " g");
-    Serial.println();
-    Serial.println("Force2: " + String(force2) + " g");
-    Serial.println();
-    Serial.println("Force3: " + String(force3) + " g");
-    Serial.println();
+    Serial.println(String(force1) + ","  + String(force2) + "," + String(force3));
     delay(500);
   //else
   //{

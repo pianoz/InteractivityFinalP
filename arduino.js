@@ -1,43 +1,67 @@
-var SerialPort = require("serialport").SerialPort;
-var serialport = new SerialPort("/dev/tty.usbmodem1421");
-serialport.on('open', function(){
-  console.log('Serial Port Opend');
-  serialport.on('data', function(data){
-      console.log(data[0]);
-  });
+const express = require('express');
+const app = express();
+const path = require('path');
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+var SerialPort = require('serialport');
+const Readline = SerialPort.parsers.Readline;
+
+
+
+app.use(express.static(path.join(__dirname, '/public')));
+
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
 });
 
-/*
+app.get('/index.html', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+});
 
-CODE BELOW IS DESIGNED TO GO IN THE ARDUINO. It is documented here:http://danialk.github.io/blog/2014/04/12/arduino-and-nodejs-communication-with-serial-ports/
-it is designed to work with a button but the control remapping shouldn't be too hard. after this code is put on the arduno, run this program by
-typing $ node arduino.js into the terminal and we should start getting output. After that all that needs to be done is for the this to be hooked
-up to the webpage itself.
+app.get('/data.html', function (req, res) {
+    res.sendFile(__dirname + '/data.html')
+});
 
-// digital pin 2 has a pushbutton attached to it.
-int pushButton = 2;
+app.get('/interact.html', function (req, res) {
+    res.sendFile(__dirname + '/interact.html')
+});
 
-// the setup routine runs once when you press reset:
-void setup() {
-  // initialize serial communication at 9600 bits per second:
-  Serial.begin(9600);
-  // make the pushbutton's pin an input:
-  pinMode(pushButton, INPUT);
-}
+app.get('/exercises.html', function (req, res) {
+    res.sendFile(__dirname + '/exercises.html')
+});
 
-// the loop routine runs over and over again forever:
-void loop() {
-  // read the input pin:
-  int buttonState = digitalRead(pushButton);
-  // print out the state of the button into the serial port:
-  if(buttonState == HIGH){
-    Serial.write(1);
-  }else{
-    Serial.write(0);
-  }
 
-  // delay in between reads for stability
-  delay(100);
-}
 
-*/
+
+var parser = new Readline();
+
+var serialport = new SerialPort("COM3", {
+    baudRate: 9600
+},function (err) { if(err) {
+    return console.log("Error", err.message);
+}});
+
+serialport = serialport.pipe(parser);
+
+serialport.on('open', function() {
+    console.log('Serial Port Opened!');
+});
+
+serialport.on('error', function(err) {
+    console.log('Error: ', err.message);
+});
+
+
+io.on('connection', function(socket){
+    serialport.on('data', function(data) {
+        var d = data.toString('ascii').split(',');
+        d = d.map(f => parseFloat(f));
+        console.log(JSON.stringify(d));
+        io.emit('data', JSON.stringify(d));
+    });
+});
+
+http.listen(3000, function() {
+    console.log('listening on *:3000');
+});
+

@@ -2,33 +2,36 @@
 <!--Bluetooth code is copied from: https://googlechrome.github.io/samples/web-bluetooth/device-info-async-await.html-->
 <html>
 <head>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
   <div class="centerdiv">
   <h class="header1">
-    Pair, and run exercise below.
+    Connect device and run exercise below.
   </h>
   <h class ="header2">
   </h>
   </div>
   <div class="centerbuttondiv">
-    <div class="pairingdiv">
-        <form>
-        <button>Pair Bluetooth Device</button>
-      </form>
 
-      Pairing Status
-      <div id="output" class="output">
-        <div id="content"></div>
-        <div id="status"></div>
-        <pre id="log"></pre>
-      </div>
-    </div>
     <div class="livedatareadout">
-      <div class="datafeed">
-        <p id="datafeed"></p>
-      </div>
+      <table>
+        <tr>
+          <th>Middle</th>
+          <th>Index</th>
+          <th>Thumb</th>
+        </tr>
+        <tr>
+
+
+          <td class="datafeed" id="middle">??</td>
+          <td class="datafeed" id="index">??</td>
+          <td class="datafeed" id="thumb">??</td>
+        </tr>
+      </table>
+
+
+
       Finger Pressure Test
     </div>
     <a class="thinb" href="index.html">
@@ -36,27 +39,45 @@
     </a>
   </div>
 
-<script>
-  var counter = 0;
-  var elem = document.getElementById("datafeed");
-  var inst = setInterval(change, 1000);
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
 
-  function change() {
-    elem.innerHTML = counter;
-    counter++;
-    if (counter >= 1000) {
-      counter = 0;
-  // clearInterval(inst); // uncomment this if you want to stop refreshing after one cycle
-    }
-  }
-  var SerialPort = require("serialport").SerialPort;
-  var serialport = new SerialPort("/dev/tty.usbmodem1421");
-  serialport.on('open', function(){
-    console.log('Serial Port Opend');
-    serialport.on('data', function(data){
-        console.log(data[0]);
-    });
-  });
+  <script>
+
+      function updateValues(ids, vals) {
+          for (let i = 0; i < ids.length; i++) {
+              let id = ids[i];
+              let val = vals[i];
+              let elem = document.getElementById(id);
+              elem.innerHTML = String(val);
+              if (val > 100) {
+                  elem.style.backgroundColor = "green";
+              }
+              else {
+                  elem.style.backgroundColor = "black";
+              }
+          }
+
+      }
+      $(function () {
+          let ids = ["middle", "index", "thumb"];
+          let socket = io();
+          let lastReceived = Date.now();
+          socket.on('data', function(msg){
+              lastReceived = Date.now();
+              msg = JSON.parse(msg);
+              updateValues(ids, msg);
+          });
+
+          setInterval(function(){
+              if (Date.now() - lastReceived > 100){
+                  updateValues(ids, ["??", "??", "??"]);
+              }
+          }, 1000);
+      });
+
+
+
 </script>
 </body>
 

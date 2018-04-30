@@ -1,0 +1,26 @@
+{
+  "name": "InteractivityFinalP",
+  "version": "1.0.0",
+  "description": "A live demo of our project (in progress) is available here: https://pianoz.github.io/InteractivityFinalP/",
+  "main": "arduino.js",
+  "dependencies": {
+    "express": "^4.16.3",
+    "serialport": "^6.2.0",
+    "socket.io": "^2.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pianoz/InteractivityFinalP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pianoz/InteractivityFinalP/issues"
+  },
+  "homepage": "https://github.com/pianoz/InteractivityFinalP#readme"
+}
