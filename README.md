@@ -6,6 +6,8 @@ A live demo of the UI for our project is available here: https://pianoz.github.i
 The Arduino with pressure sensors attached *must* be connected via USB to the same computer where the UI is being run.
 This is because all information is gathered via USB. 
 
+1. Clone this repository.
+
 ### Arduino
 
 1. Download the Arduino IDE https://www.arduino.cc/en/Main/Software 
@@ -18,8 +20,7 @@ Leaving it open will cause issues when Node attempts to access the same port.
 
 ## Software Setup (UI)
 1. Install node.js: https://nodejs.org/
-2. Clone this repository.
-3. Navigate to the directory containing the product and install necessary packages.
+3. Navigate to the directory containing the project and install necessary packages.
 `npm install`
 4. Determine which port Arduino is communicating on. This will vary depending on what OS you are using. Afterwards, update the absolute path into `config.json`.  
    ```
