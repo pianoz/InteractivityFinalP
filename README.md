@@ -2,6 +2,20 @@
 
 A live demo of the UI for our project is available here: https://pianoz.github.io/InteractivityFinalP/
 
+## Hardware Setup
+To set up the hardware you will need, the Get a Grip Glove with the sensors attached to it, a breadboard, three 3.3K resistors, and an arduino UNO.
+
+### Schematic for Hardware Setup
+
+![](Images/HookupGuideForceSensor.JPG)
+
+1. Hookup one end of the force sensor to the 5V input on the breadboard
+2. Hookup the other end of the force sensor to the output of the resistor.
+3. Connect the resistor to A0, A1, A2 of the Arduino UNO
+4. Connect the other end fo the resistor to ground. 
+
+Your Get a Grip is ready to go!
+
 ## Software Setup
 The Arduino with pressure sensors attached *must* be connected via USB to the same computer where the UI is being run.
 This is because all information is gathered via USB. 
