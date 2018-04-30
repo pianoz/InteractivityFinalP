@@ -4,9 +4,9 @@ const path = require('path');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var SerialPort = require('serialport');
+var CONFIG = require('./config.json');
+var port = CONFIG.SerialPort;
 const Readline = SerialPort.parsers.Readline;
-
-
 
 app.use(express.static(path.join(__dirname, '/public')));
 
@@ -30,12 +30,9 @@ app.get('/exercises.html', function (req, res) {
     res.sendFile(__dirname + '/exercises.html')
 });
 
-
-
-
 var parser = new Readline();
 
-var serialport = new SerialPort("COM3", {
+var serialport = new SerialPort(port, {
     baudRate: 9600
 },function (err) { if(err) {
     return console.log("Error", err.message);
@@ -56,8 +53,8 @@ io.on('connection', function(socket){
     serialport.on('data', function(data) {
         var d = data.toString('ascii').split(',');
         d = d.map(f => parseFloat(f));
-        console.log(JSON.stringify(d));
-        io.emit('data', JSON.stringify(d));
+        d = JSON.stringify(d);
+        io.emit('data', d);
     });
 });
 

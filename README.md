@@ -1,17 +1,38 @@
 # InteractivityFinalP
 
-A live demo of our project (in progress) is available here: https://pianoz.github.io/InteractivityFinalP/
+A live demo of the UI for our project is available here: https://pianoz.github.io/InteractivityFinalP/
 
-## Web Bluetooth Support
-Web Bluetooth is still experimental but is available in Chrome 45+ as an experimental feature. For now (April 2018) here are the steps for enabling web bluetooth support on Chrome:
+## Software Setup
+The Arduino with pressure sensors attached *must* be connected via USB to the same computer where the UI is being run.
+This is because all information is gathered via USB. 
 
-(If you haven't, install Chrome and open a new window)
-1. Enable experimental web platform features.
-    - go to: chrome://flags
-    - find "Experimental Web Platform Features"
-    - select "enable" (It will prompt you to restart Chrome, you should do so.)
-2. Go to this webpage: https://whatwebcando.today/bluetooth.html to check that the bluetooth feature is now enabled. 
+### Arduino
 
-## Additional Setup for Development Contexts
-Web Bluetooth can only be run in certain contexts (localhost works, file:// does not)
-You need to set up a simple http server in the project root directory to serve files on localhost. See https://stackoverflow.com/questions/38497334/how-to-run-html-file-on-localhost and pick whatever is most convenient for you.
+1. Download the Arduino IDE https://www.arduino.cc/en/Main/Software 
+2. Open `forcesensor_ThreeSensors/forcesensor_ThreeSensors.ino` in the Arduino IDE.
+3. Connect the Arduino via USB. Upload and run the code on the Arduino (please see documentation at arduino.cc for more help).
+4. Open the Serial Monitor. If you press on the pressure sensors, you should see three comma separated numbers appear on each line.
+![](Images/Arduino.PNG)
+5. Once you've confirmed that the numbers appear when force is applied, close the serial monitor. 
+Leaving it open will cause issues when Node attempts to access the same port.
+
+## Software Setup (UI)
+1. Install node.js: https://nodejs.org/
+2. Clone this repository.
+3. Navigate to the directory containing the product and install necessary packages.
+`npm install`
+4. Determine which port Arduino is communicating on. This will vary depending on what OS you are using. Afterwards, update the absolute path into `config.json`.  
+   ```
+    {
+         "SerialPort": "/abs/path/here"
+    }
+    ```
+5. Run the backend server. `node arduino.js`
+6. Go to `localhost:3000/index.html` in a browser. 
+7. Go to  `Exercises > Writing`
+8. The UI will initially look like this:
+ ![](Images/UI.PNG)
+ One pressure is applied to a sensor, that value should update in close to real time.
+ ![](Images/UI-working.PNG)
+ 
+

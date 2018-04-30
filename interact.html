@@ -70,7 +70,7 @@
           });
 
           setInterval(function(){
-              if (Date.now() - lastReceived > 100){
+              if (Date.now() - lastReceived > 1000){
                   updateValues(ids, ["??", "??", "??"]);
               }
           }, 1000);
