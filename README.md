@@ -50,7 +50,7 @@ This is because all information is gathered via USB.
     C:\Users\Bu Sun\Documents\GitHub\InteractivityFinalP>node arduino.js
     listening on *:3000
     ```
-If you see `Error Opening <port>: File not found` then you have selected the wrong port. 
+   **Troubleshooting:** If you see `Error Opening <port>: File not found` then you have the wrong port specified in `config.json`. Go back to step 4. 
 
 6. Go to `localhost:3000/index.html` in a browser. 
 
