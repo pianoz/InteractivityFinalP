@@ -1,5 +1,8 @@
 # InteractivityFinalP
 
+![](Images/GetGripGlove-1.jpg)
+![](Images/GetGripGlove-2.jpg)
+
 ## Hardware Setup
 To set up the hardware you will need, the Get a Grip Glove with the sensors attached to it, a breadboard, three 3.3K resistors, and an arduino UNO.
 
