@@ -32,7 +32,7 @@ This is because all information is gathered via USB.
 5. Once you've confirmed that the numbers appear when force is applied, close the serial monitor. 
 Leaving it open will cause issues when Node attempts to access the same port.
 
-## Software Setup (UI)
+## Node.js
 1. Install node.js: https://nodejs.org/
 3. Navigate to the directory containing the project and install necessary packages.
 `npm install`
