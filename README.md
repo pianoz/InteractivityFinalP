@@ -34,7 +34,7 @@ This is because all information is gathered via USB.
 
 **Warning: Leaving it open will cause error messages that look like `Error Opening COM3: File not found` when Node attempts to access the same port.**
 6. Make note of which port Arduino is running on. It is provided in the bottom right hand corner of the Arduino IDE and the text will say something like `Arduino running on <port>`. 
-![](Images/serialport.PNG)
+![](Images/serialport.png)
 
 ## Node.js
 1. Install node.js: https://nodejs.org/
