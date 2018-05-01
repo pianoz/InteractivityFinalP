@@ -50,8 +50,9 @@ This is because all information is gathered via USB.
     C:\Users\Bu Sun\Documents\GitHub\InteractivityFinalP>node arduino.js
     listening on *:3000
     ```
-   **Troubleshooting:** If you see `Error Opening <port>: File not found` then you have the wrong port specified in `config.json`. Go back to step 4. 
-
+   **Troubleshooting:** 
+       - If you see `Error Opening <port>: File not found` then you have the wrong port specified in `config.json`. Go back to step 4. 
+       - If you see `Error Opening <port>: Access denied` then you have some other application attempting to listen to the port. The most likely cause is that you have not closed the Serial Monitor in the Arduino IDE.
 6. Go to `localhost:3000/index.html` in a browser. 
 
 7. Go to  `Exercises > Writing`
