@@ -28,19 +28,18 @@ This is because all information is gathered via USB.
 1. Download the Arduino IDE https://www.arduino.cc/en/Main/Software 
 2. Open `forcesensor_ThreeSensors/forcesensor_ThreeSensors.ino` in the Arduino IDE.
 3. Connect the Arduino via USB. Upload and run the code on the Arduino (please see documentation at arduino.cc for more help).
-4. Open the Serial Monitor. If you apply force to any of the pressure sensors, you should see three comma separated numbers appear on each line.
+4. Open the Serial Monitor. Make note of which port Arduino is running on. It is provided at the top of the Serial Monitor window. (For the image below, it is `COM3`). If you apply force to any of the pressure sensors, you should see three comma separated numbers appear on each line. 
 ![](Images/Arduino.PNG)
 5. Once you've confirmed that the numbers appear when force is applied, close the serial monitor. 
 
 **Warning: Leaving it open will cause error messages that look like `Error Opening COM3: File not found` when Node attempts to access the same port.**
-6. Make note of which port Arduino is running on. It is provided in the bottom right hand corner of the Arduino IDE and the text will say something like `Arduino on <port>`. 
-![](Images/serialport.png)
+
 
 ## Node.js
 1. Install node.js: https://nodejs.org/
 3. Navigate to the directory containing the project and install necessary packages.
 `npm install`
-4. Update the absolute path in `config.json` with the path to the port Arduino is running on (go to step 6 in the previous section to determine the port name).  
+4. Update the absolute path in `config.json` with the path to the port Arduino is running on (go to step 4 in the previous section to determine the port name).  
    ```
     {
          "SerialPort": "/abs/path/here"
