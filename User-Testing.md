@@ -1,4 +1,4 @@
-#User Testing 4/30/2018
+# User Testing 4/30/2018
 
 We focused on testing the glove (which was not tested during the last user tests) with the participant. They were assisted in putting on the glove and given a brief 
 explanation of the purpose of the device (a glove to help people with dyspraxia and grip issues train their grip).
