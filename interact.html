@@ -1,29 +1,114 @@
 <!DOCTYPE html>
+<!--Bluetooth code is copied from: https://googlechrome.github.io/samples/web-bluetooth/device-info-async-await.html-->
 <html>
 <head>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
   <div class="centerdiv">
   <h class="header1">
-    Interaction UI
+    Connect device and run exercise below.
   </h>
   <h class ="header2">
-  </br>under construction
   </h>
   </div>
   <div class="centerbuttondiv">
-    <div class="enormodiv">
+
+    <div class="livedatareadout">
+      <table>
+        <tr>
+          <th>Middle</th>
+          <th>Index</th>
+          <th>Thumb</th>
+        </tr>
+        <tr>
+
+
+          <td class="datafeed" id="middle">??</td>
+          <td class="datafeed" id="index">??</td>
+          <td class="datafeed" id="thumb">??</td>
+        </tr>
+      </table>
+
+
+
+      Finger Pressure Test
     </div>
     <a class="thinb" href="index.html">
       Home
     </a>
   </div>
-<footer>
-  <p class="ftrp">By: Tia Basak, Bu Sun Kim, Robert Perez</p>
-</footer>
-</body>
-<script type="text/javascript">
+
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script>
+
+      let mySound = new Sound("ding.wav");
+
+      function updateValues(ids, vals) {
+          let numAchieved = 0;
+          for (let i = 0; i < ids.length; i++) {
+
+              let id = ids[i];
+              let val = vals[i];
+              let elem = document.getElementById(id);
+              elem.innerHTML = String(val);
+              if (val > 100) {
+                  elem.style.backgroundColor = "green";
+                  numAchieved +=1;
+              }
+              else {
+                  elem.style.backgroundColor = "black";
+              }
+
+              if (numAchieved === 3)
+              {
+                  console.log("yay");
+                  mySound.play();
+              }
+          }
+      }
+
+      // from https://www.w3schools.com/graphics/game_sound.asp
+      function Sound(src) {
+          this.sound = document.createElement("audio");
+          this.sound.src = src;
+          this.sound.setAttribute("preload", "auto");
+          this.sound.setAttribute("controls", "none");
+          this.sound.style.display = "none";
+          document.body.appendChild(this.sound);
+          this.play = function(){
+              this.sound.play();
+          };
+          this.stop = function(){
+              this.sound.pause();
+          };
+      }
+
+      $(function () {
+
+          let ids = ["middle", "index", "thumb"];
+          let socket = io();
+          let lastReceived = Date.now();
+          socket.on('data', function(msg){
+              lastReceived = Date.now();
+              msg = JSON.parse(msg);
+              updateValues(ids, msg);
+          });
+
+          setInterval(function(){
+              if (Date.now() - lastReceived > 1000){
+                  updateValues(ids, ["??", "??", "??"]);
+              }
+          }, 1000);
+      });
+
+
 
 </script>
+</body>
+
+<script src="device-info.js"></script>
+
 </html>
